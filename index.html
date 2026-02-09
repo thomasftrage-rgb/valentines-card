@@ -2,6 +2,10 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+
+<!-- ESSENCIAL PARA MOBILE -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Valentine's Card</title>
 
 <style>
@@ -10,34 +14,47 @@
         margin: 0;
         font-family: Arial, sans-serif;
         text-align: center;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 15px;
+    }
+
+    .container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     #openHere {
-        margin-top: 25px;
-        font-size: 22px;
+        margin-top: 10px;
+        font-size: 26px;
         color: #b3004c;
         font-weight: bold;
     }
 
     #envelope {
-        width: 260px;
-        margin: 10px auto 0 auto;
+        width: 320px;
+        margin: 15px auto 0 auto;
         cursor: pointer;
         transition: 0.6s ease;
     }
 
     #envelope img {
         width: 100%;
-        border-radius: 12px;
+        border-radius: 14px;
         box-shadow: 0 6px 18px rgba(0,0,0,0.25);
     }
 
     .card-bg {
         background: #f4a5b5;
-        width: 330px;
-        margin: 30px auto 0 auto;
-        padding: 25px;
-        border-radius: 18px;
+        width: 100%;
+        max-width: 380px;
+        margin-top: 20px;
+        padding: 24px;
+        border-radius: 20px;
         display: none;
         flex-direction: column;
         align-items: center;
@@ -47,14 +64,14 @@
     .photos {
         display: flex;
         gap: 15px;
-        margin-bottom: 20px;
+        margin-bottom: 18px;
     }
 
     .photo-box {
-        width: 130px;
-        height: 130px;
+        width: 160px;
+        height: 160px;
         background: white;
-        border-radius: 14px;
+        border-radius: 16px;
         overflow: hidden;
         box-shadow: 0 4px 10px rgba(0,0,0,0.18);
     }
@@ -69,16 +86,16 @@
         font-size: 18px;
         color: #8b1e3f;
         font-weight: bold;
-        line-height: 1.35;
-        margin-top: 5px;
+        line-height: 1.4;
+        margin-top: 8px;
     }
 
-    /* ===== TIMER DESTACADO ===== */
+    /* TIMER DESTACADO */
     .timer-box {
         margin-top: 18px;
-        padding: 14px 16px;
-        background: #e27a96; /* tom mais escuro */
-        border-radius: 14px;
+        padding: 14px 18px;
+        background: #e27a96;
+        border-radius: 16px;
         box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
 
@@ -88,39 +105,58 @@
         color: #7a1430;
         line-height: 1.4;
     }
+
+    /* AJUSTES EXTRAS PARA TELAS MUITO PEQUENAS */
+    @media (max-width: 360px) {
+        #envelope {
+            width: 280px;
+        }
+
+        .photo-box {
+            width: 140px;
+            height: 140px;
+        }
+
+        .message {
+            font-size: 16px;
+        }
+    }
 </style>
 </head>
 <body>
 
-<div id="openHere">Open here 💖</div>
+<div class="container">
 
-<!-- ENVELOPE FECHADO -->
-<div id="envelope" onclick="openCard()">
-    <img src="envlpamoroso.png" alt="Envelope Fechado">
-</div>
+    <div id="openHere">Open here 💖</div>
 
-<!-- CARTA ABERTA -->
-<div class="card-bg" id="card">
-
-    <div class="photos">
-        <div class="photo-box">
-            <img src="adolescente.png" alt="Foto 1">
-        </div>
-
-        <div class="photo-box">
-            <img src="crianca.png" alt="Foto 2">
-        </div>
+    <!-- ENVELOPE FECHADO -->
+    <div id="envelope" onclick="openCard()">
+        <img src="envlpamoroso.png" alt="Envelope Fechado">
     </div>
 
-    <div class="message">
-        Hi, my love, I really wanted to spend the day with you, but I couldn't,
-        and I can't give you anything physically, so I made this card.
-        Know that I love you very much. Happy Valentine's Day.
-    </div>
+    <!-- CARTA ABERTA -->
+    <div class="card-bg" id="card">
 
-    <!-- TIMER SEPARADO -->
-    <div class="timer-box">
-        <div id="kissCounter"></div>
+        <div class="photos">
+            <div class="photo-box">
+                <img src="adolescente.png" alt="Foto 1">
+            </div>
+
+            <div class="photo-box">
+                <img src="crianca.png" alt="Foto 2">
+            </div>
+        </div>
+
+        <div class="message">
+            Hi, my love, I really wanted to spend the day with you, but I couldn't,
+            and I can't give you anything physically, so I made this card.
+            Know that I love you very much. Happy Valentine's Day.
+        </div>
+
+        <div class="timer-box">
+            <div id="kissCounter"></div>
+        </div>
+
     </div>
 
 </div>
@@ -151,7 +187,7 @@
         const secs = Math.floor((diff / 1000) % 60);
 
         document.getElementById("kissCounter").innerHTML =
-            `Our first kiss was <b>${days}</b> days, <b>${hours}</b> hours, 
+            `Our first kiss was <b>${days}</b> days, <b>${hours}</b> hours,
             <b>${mins}</b> minutes and <b>${secs}</b> seconds ago 💗`;
     }
 
@@ -161,3 +197,4 @@
 
 </body>
 </html>
+
