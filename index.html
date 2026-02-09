@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Valentine's Card</title>
+
+<style>
+    body {
+        background: #f8d0db;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+
+    #openHere {
+        margin-top: 25px;
+        font-size: 22px;
+        color: #b3004c;
+        font-weight: bold;
+    }
+
+    #envelope {
+        width: 260px;
+        margin: 10px auto 0 auto;
+        cursor: pointer;
+        transition: 0.6s ease;
+    }
+
+    #envelope img {
+        width: 100%;
+        border-radius: 12px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    }
+
+    .card-bg {
+        background: #f4a5b5;
+        width: 330px;
+        margin: 30px auto 0 auto;
+        padding: 25px;
+        border-radius: 18px;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    .photos {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .photo-box {
+        width: 130px;
+        height: 130px;
+        background: white;
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.18);
+    }
+
+    .photo-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .message {
+        font-size: 18px;
+        color: #8b1e3f;
+        font-weight: bold;
+        line-height: 1.35;
+        margin-top: 5px;
+    }
+
+    /* ===== TIMER DESTACADO ===== */
+    .timer-box {
+        margin-top: 18px;
+        padding: 14px 16px;
+        background: #e27a96; /* tom mais escuro */
+        border-radius: 14px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    #kissCounter {
+        font-size: 17px;
+        font-weight: bold;
+        color: #7a1430;
+        line-height: 1.4;
+    }
+</style>
+</head>
+<body>
+
+<div id="openHere">Open here 💖</div>
+
+<!-- ENVELOPE FECHADO -->
+<div id="envelope" onclick="openCard()">
+    <img src="envlpamoroso.png" alt="Envelope Fechado">
+</div>
+
+<!-- CARTA ABERTA -->
+<div class="card-bg" id="card">
+
+    <div class="photos">
+        <div class="photo-box">
+            <img src="adolescente.png" alt="Foto 1">
+        </div>
+
+        <div class="photo-box">
+            <img src="crianca.png" alt="Foto 2">
+        </div>
+    </div>
+
+    <div class="message">
+        Hi, my love, I really wanted to spend the day with you, but I couldn't,
+        and I can't give you anything physically, so I made this card.
+        Know that I love you very much. Happy Valentine's Day.
+    </div>
+
+    <!-- TIMER SEPARADO -->
+    <div class="timer-box">
+        <div id="kissCounter"></div>
+    </div>
+
+</div>
+
+<script>
+    function openCard() {
+        document.getElementById("openHere").style.display = "none";
+
+        const envelope = document.getElementById("envelope");
+        envelope.style.transform = "translateY(60px)";
+        envelope.style.opacity = "0";
+
+        setTimeout(() => {
+            envelope.style.display = "none";
+            document.getElementById("card").style.display = "flex";
+        }, 500);
+    }
+
+    function updateKissCounter() {
+        const firstKiss = new Date("2024-10-12T00:00:00");
+        const now = new Date();
+
+        const diff = now - firstKiss;
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const mins = Math.floor((diff / (1000 * 60)) % 60);
+        const secs = Math.floor((diff / 1000) % 60);
+
+        document.getElementById("kissCounter").innerHTML =
+            `Our first kiss was <b>${days}</b> days, <b>${hours}</b> hours, 
+            <b>${mins}</b> minutes and <b>${secs}</b> seconds ago 💗`;
+    }
+
+    setInterval(updateKissCounter, 1000);
+    updateKissCounter();
+</script>
+
+</body>
+</html>
